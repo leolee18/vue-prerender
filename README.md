@@ -122,5 +122,62 @@ at Launcher.launch (/Users/admin/Desktop/vue-meituan/node_modules/puppeteer/lib/
 cnpm install puppeteer
 
 ```
+## vue 优化
+```
+一.代码包优化
+屏蔽sourceMap
+vue.config.js
+productionSourceMap: false,
+webpack 
+devtool: 'none',
+devtool: 'source-map',inline-source-map 
 
+对项目代码中的JS/CSS/SVG(*.ico)文件进行gzip压缩
+1、安装compression-webpack-plugin
+npm i compression-webpack-plugin
+2、vue.config.js
+const CompressionWebpackPlugin = require('compression-webpack-plugin')
+module.exports = {
+    configureWebpack: config => {
+         if (process.env.NODE_ENV === 'production') {
+      productionGzip && myConfig.plugins.push(
+        new CompressionWebpackPlugin({
+          test: /\.js$|\.html$|\.css$/,
+          threshold: 1024,
+          minRatio: 0.8
+        })
+      )
+  }
+
+
+    }
+
+}
+3、后台Nginx配置
+gzip on;
+gzip_static on;
+gzip_min_length 1024;
+gzip_buffers 4 16k;
+gzip_comp_level 2;
+gzip_types text/plain application/javascript application/x-javascript text/css application/xml text/javascript application/x-httpd-php application/vnd.ms-fontobject font/ttf font/opentype font/x-woff image/svg+xml;
+gzip_vary off;
+gzip_disable "MSIE [1-6]\.";
+
+对路由组件进行懒加载
+component: resolve=>require(["@/components/employees"],resolve)
+
+
+二、源码优化
+v-if 和 v-show选择调用
+为item设置唯一key值,方便vuejs内部机制精准找到该条列表数据
+细分vuejs组件
+减少watch的数据,可以采用事件中央总线或者vuex进行数据的变更操作
+内容类系统的图片资源按需加载
+SSR(服务端渲染)
+
+三、用户体验优化
+better-click防止iphone点击延迟
+菊花loading
+骨架屏加载
+```
 
