@@ -122,6 +122,18 @@ at Launcher.launch (/Users/admin/Desktop/vue-meituan/node_modules/puppeteer/lib/
 cnpm install puppeteer
 
 ```
+## 调试工具安装
+```
+Vue.js devtools开发工具的使用
+在Chrome或Firefox浏览器的扩展插件仓库里搜vue devtool，安装Vue.js devtools.
+
+安装说明
+https://www.cnblogs.com/alice-fee/p/8038367.html
+
+0720 编译好的chrome 插件
+```
+
+
 ## vue 优化
 ```
 一.代码包优化
